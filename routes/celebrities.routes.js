@@ -3,6 +3,16 @@ const CelebrityModel = require("./../models/Celebrity.model");
 
 // all your routes here
 
+router.get("/", async (req, res, next) => {
+  try {
+    res.render("celebrities/celebrities", {
+      celebrities: await CelebrityModel.find(),
+    });
+  } catch (e) {
+    next(e);
+  }
+});
+
 // GET - create one celebrity (form)
 router.get("/create", async (req, res) => {
   res.render("celebrities/new-celebrity");
