@@ -6,7 +6,7 @@ const MovieModel = require("./../models/Movie.model");
 
 router.get("/create", async (req, res, next) => {
   try {
-    res.render("/movies/new-movie", {
+    res.render("movies/new-movie", {
       celebrities: await CelebrityModel.find(),
     });
   } catch (e) {
@@ -14,8 +14,8 @@ router.get("/create", async (req, res, next) => {
   }
 });
 
-router.post("/create", async (req, res, next) => {
-  const { title, genre, plot, cast } = req.body;
-});
+// router.post("/create", async (req, res, next) => {
+//   const { title, genre, plot, cast } = req.body;
+// });
 
 module.exports = router;
