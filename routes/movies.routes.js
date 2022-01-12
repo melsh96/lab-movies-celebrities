@@ -14,8 +14,23 @@ router.get("/create", async (req, res, next) => {
   }
 });
 
-// router.post("/create", async (req, res, next) => {
-//   const { title, genre, plot, cast } = req.body;
-// });
+router.post("/movies/create", async (req, res, next) => {
+  try {
+    await MovieModel.create(req.body);
+    res.redirect("/movies");
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get("/", async (req, res, next) => {
+  try {
+    res.render("movies/movies.hbs", {
+      movies: await MovieModel.find(),
+    });
+  } catch (e) {
+    next(e);
+  }
+});
 
 module.exports = router;
