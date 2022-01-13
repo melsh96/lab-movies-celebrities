@@ -14,8 +14,9 @@ router.get("/create", async (req, res, next) => {
   }
 });
 
-router.post("/movies/create", async (req, res, next) => {
+router.post("/create", async (req, res, next) => {
   try {
+    console.log(req.body);
     await MovieModel.create(req.body);
     res.redirect("/movies");
   } catch (e) {
@@ -27,6 +28,7 @@ router.get("/", async (req, res, next) => {
   try {
     res.render("movies/movies.hbs", {
       movies: await MovieModel.find(),
+      celebrities: await CelebrityModel.find(),
     });
   } catch (e) {
     next(e);
